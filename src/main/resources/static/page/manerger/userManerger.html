@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<script>
+  
+</script>
+<body>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">用户管理</h3>
+		</div>
+		<div class="panel-body">
+			<div class="col-ms-12">
+				<button ng-click="onAdd()" class="btn btn-primary">新增人员</button>
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>操作</th>
+							<th>用户id</th>
+							<th>用户名</th>
+							<th>身份证</th>
+							<th>岗位</th>
+							<th>等级</th>
+							<th>状态</th>
+						</tr>
+					<thead>
+						<tr ng-repeat="item in userData">
+							<td><img style="cursor: pointer;" src="photo/see.PNG"
+								ng-click="onShow()" height="14px" /> <img
+								style="cursor: pointer;" src="photo/delete.PNG"
+								ng-click="onDelete(item.user_id)" height="18px" /></td>
+							<td>{{item.user_id}}</td>
+							<td>{{item.user_name}}</td>
+							<td>{{item.id_number}}</td>
+							<td>{{item.dev_position}}</td>
+							<td>{{item.level}}</td>
+							<td>{{item.status}}</td>
+						</tr>
+				</table>
+				 <div id="example" style="text-align: left"> <ul id="pageLimit"></ul> 共{{totalPages}} 页, 共 {{total_record}}条记录</div>
+				<br>
+			</div>
+		</div>
+	</div>
+
+	<!-- 模态框（Modal)-->
+	<div class="modal fade" id="addUserModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 1100px">
+			<div class="modal-content">
+				<div class="modal-header">新增人员</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="col-md-4">
+								用户名： <input ng-model="user_name">
+							</div>
+							<div class="col-md-4">
+								身份证： <input ng-model="id_number">
+							</div>
+							<div class="col-md-4">
+								岗位： <input ng-model="dev_position">
+							</div>
+						</div>
+
+						<div class="col-md-12" style="margin-top: 5px;">
+							<div class="col-md-4">
+								等级： <input ng-model="level" style="margin-left: 14px;">
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-primary" ng-click="onOk()">确定</button>
+					<button class="btn btn-primary" ng-click="onCancel()">取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>

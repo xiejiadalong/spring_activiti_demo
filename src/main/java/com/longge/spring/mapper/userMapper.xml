@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.longge.spring.dao.UserDao">
+    
+      <select id="getUsers" parameterType="map" resultType="map">
+        select * from user_t
+        order by create_date desc,user_id
+        limit #{startNum},#{numberOfPages}
+     </select>
+     
+      <select id="getUsersTotal" parameterType="map" resultType="int">
+        select count(1) as total_record from user_t
+     </select>
+     
+     <insert id="addUser" parameterType="map" >
+           insert into user_t(user_id,user_name,id_number,dev_position,level,status,create_date)
+           values(#{user_id},#{user_name},#{id_number},#{dev_position},#{level},#{status},#{create_date})
+      
+      </insert>
+      
+      <delete id="deleteUser" parameterType="map">
+            delete from user_t
+            where  user_id=#{user_id}
+      </delete>
+     
+     
+ </mapper>

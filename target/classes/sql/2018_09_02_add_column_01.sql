@@ -1,0 +1,1 @@
+ALTER TABLE user_t ADD create_date DATE;

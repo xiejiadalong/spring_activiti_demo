@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>管理系统</title>
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="mycss/index.css" type="text/css" />
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-paginator.min.js"></script>
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/angular-route.min.js"></script>
+
+<style>
+</style>
+</head>
+<script>
+	$(document).ready(function() {
+		//切换时触发的效果
+		$("#myNav li").click(function() {
+			$("#myNav li").removeClass("active");
+			$(this).addClass("active");
+		})
+	});
+</script>
+<body ng-app="indexApp" style="background-color: #eeeeee;">
+	<nav class="navbar navbar-inverse" style="margin-bottom: 5px;">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<div id="header" class="navbar-brand">系统管理</div>
+			</div>
+		</div>
+	</nav>
+
+	<div id="main" style="background-color: #ffffff;">
+		<div class="row">
+			<div class="col-md-2" id="memu_left">
+				<ul class="nav nav-tabs nav-stacked " id="myNav">
+					<li class="active"><a href="#userManerger">用户管理</a></li>
+					<li><a href="#roleManerger">角色管理</a></li>
+					<li><a href="#menuManerger">菜单管理</a></li>
+					<li><a href="#permissionManerger">权限管理</a></li>
+				</ul>
+			</div>
+			<div  class="col-md-10" class="container">
+				<div ng-view></div>
+			</div>
+		</div>
+	</div>
+	<div id="footer"></div>
+
+</body>
+<script type="text/javascript" src="myjs/manerger/index.js"></script>
+<script type="text/javascript" src="myjs/manerger/userManerger.js"></script>
+<script type="text/javascript" src="myjs/manerger/roleManerger.js"></script>
+<script type="text/javascript" src="myjs/manerger/menuManerger.js"></script>
+<script type="text/javascript" src="myjs/manerger/permissionManerger.js"></script>
+
+</html>
