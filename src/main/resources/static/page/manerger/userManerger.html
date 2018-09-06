@@ -3,9 +3,13 @@
 <head>
 <meta charset="UTF-8">
 </head>
-<script>
-  
-</script>
+
+<style>
+.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+    width: 80px;
+}
+</style>
+
 <body>
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -39,8 +43,20 @@
 							<td>{{item.status}}</td>
 						</tr>
 				</table>
-				 <div id="example" style="text-align: left"> <ul id="pageLimit"></ul> 共{{totalPages}} 页,  {{total_record}}条记录</div>
-				<br>
+				<div id="pagePaginator" style="text-align: left;">
+					<ul id="pageLimit"></ul>
+					<span style="float: right; margin-top: 5px; color: #222"> 
+					每页
+					<select id="slpk" class="selectpicker" data-live-search="false" 
+					style="width:50px" >
+					<option value='5'>5</option>
+					<option value='10'>10</option>
+					<option value='20'>20</option>
+					<option value='50'>50</option>
+					</select>
+				条, 共{{total_record}}条记录</span>
+				</div>
+				 <br>
 			</div>
 		</div>
 	</div>
@@ -70,9 +86,7 @@
 								等级： <input ng-model="level" style="margin-left: 14px;">
 							</div>
 						</div>
-
 					</div>
-
 				</div>
 				<div class="modal-footer">
 					<button class="btn btn-primary" ng-click="onOk()">确定</button>
@@ -81,7 +95,8 @@
 			</div>
 		</div>
 	</div>
-
-
 </body>
+<script type="text/javascript">
+</script>
+
 </html>

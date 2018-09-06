@@ -5,11 +5,23 @@ app.controller('userManergerController', function($rootScope, $scope, $http) {
 
 	//初始化
 	var numberOfPages=5;  //默认每页5条
+	initCss();
 	init();
 	function init() {
 		getUserDatas(1,numberOfPages);
 	}
-	
+    function initCss(){
+    	$("#pageLimit").css("cursor","pointer");
+        $(".selectpicker").selectpicker({
+    		noneSelectedText : '5'
+    	}); 
+        $('#slpk').on('changed.bs.select', function (e) {
+        	var value = $('#slpk').val();
+        	numberOfPages=parseInt(value);
+        	init();
+        });
+    }
+
 	function getUserDatas(currentPage,numberOfPages){
 		var parms={
 				"currentPage":currentPage,
