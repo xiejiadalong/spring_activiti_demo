@@ -1,4 +1,3 @@
-drop table if exists user_t;
 
 /*==============================================================*/
 /* Table: user_t                                                */
@@ -17,7 +16,7 @@ create table user_t
 
 alter table user_t comment '用户表';
 
-drop table if exists role_t;
+
 
 /*==============================================================*/
 /* Table: role_t                                                */
@@ -34,7 +33,7 @@ create table role_t
 alter table role_t comment '角色表';
 
 
-drop table if exists permission_t;
+
 
 /*==============================================================*/
 /* Table: permission_t                                          */
@@ -49,7 +48,7 @@ create table permission_t
 
 alter table permission_t comment '权限点';
 
-drop table if exists menu_t;
+
 
 /*==============================================================*/
 /* Table: menu_t                                                */
@@ -67,7 +66,6 @@ create table menu_t
 alter table menu_t comment '菜单栏';
 
 
-drop table if exists user_role_t;
 
 /*==============================================================*/
 /* Table: user_role_t                                           */
@@ -88,7 +86,6 @@ alter table user_role_t add constraint FK_Reference_4 foreign key (role_id)
       references role_t (role_id) on delete restrict on update restrict;
 
       
-drop table if exists role_permission_t;
 
 /*==============================================================*/
 /* Table: role_permission_t                                     */
@@ -109,7 +106,6 @@ alter table role_permission_t add constraint FK_Reference_2 foreign key (permiss
       references permission_t (permission_id) on delete restrict on update restrict;
 
       
-      drop table if exists permission_menu_t;
 
 /*==============================================================*/
 /* Table: permission_menu_t                                     */
@@ -130,6 +126,6 @@ alter table permission_menu_t add constraint FK_Reference_5 foreign key (permiss
 alter table permission_menu_t add constraint FK_Reference_6 foreign key (menu_id)
       references menu_t (menu_id) on delete restrict on update restrict;
 
-
-
-
+ALTER TABLE user_t ADD create_date DATE;
+ALTER TABLE role_t ADD create_date DATE;
+ALTER TABLE role_t ADD comment VARCHAR(2000);
