@@ -41,3 +41,38 @@ ul.nav-tabs li:last-child a {
 ul.nav-tabs.affix {
 	top: 30px; /* Set the top position of pinned element */
 }
+
+.modal-header{
+	 background-color: #556650;
+     color: #ccc;
+}
+
+.btn-primary {
+    color: #333;
+    background-color: #fff;
+    border-color: #111;
+}
+
+.btn {
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.pagination>li>a, .pagination>li>span {
+    padding: 4px 8px;
+}
+
+.panel-default>.panel-heading {
+    color: #333;
+    background-color: #BDBDA2;
+    border-color: #ddd;
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    color: #333;
+}
+
+.pagination>li>a, .pagination>li>span {
+    color: #333;
+}

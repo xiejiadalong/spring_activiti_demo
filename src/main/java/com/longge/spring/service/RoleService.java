@@ -6,36 +6,35 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.longge.spring.dao.RoleDao;
 import com.longge.spring.dao.UserDao;
 import com.longge.spring.entity.Dictionary;
 import com.longge.spring.util.PageUtil;
 
 @Service
-public class UserService {
+public class RoleService {
 
 	@Autowired
-	UserDao userDao;
+	RoleDao roleDao;
 	
 	@Autowired
     Dictionary dictionary;
 
-	public List<Map<String, Object>> getUsers(Map<String, Object> parms) {
-
+	public List<Map<String, Object>> getRoles(Map<String, Object> parms) {
 		//分页参数设置
 		PageUtil.handlePageParms(parms);
-		List<Map<String, Object>> resData=userDao.getUsers(parms);
-        int totle_record = userDao.getUsersTotal(parms);
+		List<Map<String, Object>> resData=roleDao.getRoles(parms);
+        int totle_record = roleDao.getTotal(parms);
 		PageUtil.handlePageResult(resData, totle_record,parms);
-		dictionary.transferData(resData, "status");
+		dictionary.transferData(resData, "role_status");
         return resData;
-
 	}
 
-	public void addUser(Map user) {
-		userDao.addUser(user);
+	public void addRole(Map role) {
+		roleDao.addRole(role);
 	}
 
-	public void deleteUser(Map user) {
-		userDao.deleteUser(user);
+	public void deleteRole(Map role) {
+		roleDao.deleteRole(role);
 	}
 }

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.longge.spring.dao.RoleDao">
+    
+      <select id="getRoles" parameterType="map" resultType="map">
+        select * from role_t
+        order by create_date desc,role_id
+        limit #{startNum},#{numberOfPages}
+     </select>
+     
+      <select id="getTotal" parameterType="map" resultType="int">
+        select count(1) as total_record from role_t
+     </select>
+     
+     <insert id="addRole" parameterType="map" >
+           insert into role_t(role_id,role_name,role_status,role_type,create_date,comment)
+           values(#{role_id},#{role_name},#{role_status},#{role_type},#{create_date},#{comment})
+      </insert>
+      
+      <delete id="deleteRole" parameterType="map">
+            delete from role_t
+            where  role_id=#{role_id}
+      </delete>
+     
+ </mapper>
