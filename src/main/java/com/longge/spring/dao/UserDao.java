@@ -17,8 +17,8 @@ public interface UserDao {
 	 */
 	public List<Map<String, Object>> getUsers(Map parms);
 	public int getUsersTotal(Map parms);
-	
+	public List<Map<String, Object>> getUserRoles(Map parms); 
 	public void addUser(Map user);
-	
+	public void addUserRole(Map userRole);
 	public void deleteUser(Map user);
 }

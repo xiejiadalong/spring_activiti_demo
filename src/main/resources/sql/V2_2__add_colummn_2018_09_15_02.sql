@@ -1,0 +1,2 @@
+ALTER TABLE menu_t ADD level VARCHAR(20);
+ALTER TABLE menu_t ADD url VARCHAR(500);

@@ -32,6 +32,20 @@ public class RoleController {
 	{
 		return roleService.getRoles(pageParms);
 	}
+	
+	@RequestMapping(value="/getAllRoles",method=RequestMethod.POST)
+	public List<Map<String, Object>> getAllRoles(@RequestBody Map<String, Object> pageParms,HttpServletRequest request)
+	{
+		return roleService.getAllRoles(pageParms);
+	}
+	
+	@RequestMapping(value="/getRolePermissions",method=RequestMethod.POST)
+	public List<Map<String, Object>> getRolePermissions(@RequestBody Map<String, Object> pageParms,HttpServletRequest request)
+	{
+		return roleService.getRolePermissions(pageParms);
+	}
+	
+	
 
 	@RequestMapping(value="/addRole",method=RequestMethod.POST)
 	public List<Map<String, Object>> addRole(@RequestBody Map<String, String> role,HttpServletRequest request)
@@ -42,10 +56,20 @@ public class RoleController {
 	   return null;
 	}
 	
+	@RequestMapping(value="/addRolePemission",method=RequestMethod.POST)
+	public List<Map<String, Object>> addRolePemission(@RequestBody Map<String, String> parms,HttpServletRequest request)
+	{
+	   roleService.addRolePemission(parms);
+	   return null;
+	}
+	
 	@RequestMapping(value="/deleteRole",method=RequestMethod.POST)
 	public List<Map<String, Object>> deleteRole(@RequestBody Map<String, String> role,HttpServletRequest request)
 	{
 		roleService.deleteRole(role);
 	   return null;
 	}
+	
+	
+	
 }

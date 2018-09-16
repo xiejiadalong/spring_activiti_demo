@@ -29,11 +29,29 @@ public class RoleService {
 		dictionary.transferData(resData, "role_status");
         return resData;
 	}
+	
+	public List<Map<String, Object>> getAllRoles(Map<String, Object> parms) {
+		//分页参数设置
+		List<Map<String, Object>> resData=roleDao.getAllRoles(parms);
+		dictionary.transferData(resData, "role_status");
+        return resData;
+	}
+	
+	public List<Map<String, Object>> getRolePermissions(Map<String, Object> parms) {
+		//分页参数设置
+		List<Map<String, Object>> resData=roleDao.getRolePermissions(parms);
+		dictionary.transferData(resData, "role_status");
+        return resData;
+	} 
 
 	public void addRole(Map role) {
 		roleDao.addRole(role);
 	}
 
+	public void addRolePemission(Map parms) {
+		roleDao.addRolePemission(parms);
+	}
+	
 	public void deleteRole(Map role) {
 		roleDao.deleteRole(role);
 	}

@@ -1,8 +1,77 @@
 <!DOCTYPE html>
 <html>
-<head><meta charset="UTF-8"></head>
+<head>
+<meta charset="UTF-8">
+</head>
 
 <body>
-菜单管理
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">菜单管理</h3>
+		</div>
+		<div class="panel-body">
+			<div class="row" style="margin-bottom: 5px;">
+				<div class="col-md-12">
+					<div class="col-md-2" style="padding-left: 0px;">
+						<button class="btn btn-primary" ng-click="onAdd()">添加</button>
+						<button class="btn btn-primary" ng-click="onEdit()">修改</button>
+						<button class="btn btn-primary" ng-click="onDelete()">删除</button>
+					</div>
+					<div class="col-md-1"></div>
+				</div>
+			</div>
+			<div id="tree"></div>
+		</div>
+	</div>
+	
+	 <!-- 模态框（Modal)-->
+	<div class="modal fade" id="addMenuModal" tabindex="1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 1100px">
+			<div class="modal-content">
+				<div class="modal-header">新增菜单</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-12" style="margin-bottom: 5px;">
+							<div class="col-md-4">
+								菜单名： <input ng-model="menu_name">
+							</div>
+							<div class="col-md-4">
+								层次： <input ng-model="level"  readonly="true">
+							</div>
+							<div class="col-md-4">
+								状态： <input ng-model="status" readonly="true">
+							</div>
+					    </div>
+					    <div class="col-md-12" style="margin-bottom: 5px;">
+					        <div class="col-md-4">
+								 父节点： <input ng-model="p_name" readonly="true">
+							</div>
+							<div class="col-md-4">
+								链接： <input ng-model="url" >
+							</div>
+							
+							<div class="col-md-4">
+								类型： <input ng-model="menu_type" readonly="true">
+							</div>
+					    </div>
+					    
+					     <div class="col-md-12">
+					       <div class="col-md-4">
+								权限点： <select id="slpermission" class="slpermissionclass"
+									data-live-search="false" style="width: 170px">
+								</select>
+							</div>
+					     
+					    </div>
+				    </div>
+		    	</div>
+		    	<div class="modal-footer">
+					<button class="btn btn-primary" ng-click="onOk()">确定</button>
+					<button class="btn btn-primary" ng-click="onCancel()">取消</button>
+				</div>
+		</div>
+	</div>
+	</div>
 </body>
 </html>

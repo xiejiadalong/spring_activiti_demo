@@ -9,6 +9,24 @@
         limit #{startNum},#{numberOfPages}
      </select>
      
+      <select id="getUserRoles" parameterType="map" resultType="map">
+        select 
+           ur.role_id,
+           ur.user_id,
+           role.role_name,
+           ur.status ur_status,
+           user.user_name
+         from user_role_t ur
+        join role_t role
+        on ur.role_id=role.role_id
+        join user_t user 
+        on user.user_id=ur.user_id
+        where 1=1
+        <if test="user_id != null"> and ur.user_id=#{user_id}</if>
+        <if test="role_id != null"> and ur.role_id=#{role_id}</if>
+       
+     </select>
+     
       <select id="getUsersTotal" parameterType="map" resultType="int">
         select count(1) as total_record from user_t
      </select>
@@ -16,8 +34,13 @@
      <insert id="addUser" parameterType="map" >
            insert into user_t(user_id,user_name,id_number,dev_position,level,status,create_date)
            values(#{user_id},#{user_name},#{id_number},#{dev_position},#{level},#{status},#{create_date})
-      
       </insert>
+      
+      <insert id="addUserRole" parameterType="map" >
+           insert into user_role_t(user_id,role_id,status)
+           values(#{user_id},#{role_id},#{status})
+      </insert>
+      
       
       <delete id="deleteUser" parameterType="map">
             delete from user_t

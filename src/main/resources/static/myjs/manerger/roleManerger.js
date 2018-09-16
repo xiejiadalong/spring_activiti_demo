@@ -96,6 +96,85 @@ app.controller('roleManergerController', function($rootScope,$scope, $http) {
 			}, function errorCallback(response) {
 				console.log("error");
 			});
+	}
+	
+	/**
+	 * roleUser
+	 */
+	$scope.onShow = function(role_id) {
+		$("#userRoleModal").modal("show");
+		setUserRoleData(role_id);
+	}
+	$scope.onCancelForShowUser=function(){
+		$("#userRoleModal").modal("hide");
+	}
+	
+	function setUserRoleData(role_id){
+		var parms = {
+		   "role_id":role_id
+		};
+		$http.post('/getUserRoles', parms).then(function successCallback(response) {
+			var roleuserdata=response.data;
+			$scope.roleUserData=roleuserdata;
+		}, function errorCallback(response) {
+			console.log("error");
+		});
+	}
+	
+	/**
+	 * onSetRolePemission
+	 */
+	var select_role_id;
+	$scope.onAddPermission=function(){
+		var permission_id = $('#slpermission').val();
+		var parms = {};
+		parms.role_id = select_role_id;
+		parms.permission_id = permission_id;
+		parms.status = "1";
+		$http.post('/addRolePemission', parms).then(function successCallback(response) {
+			getRolePermissionData(select_role_id);
+		}, function errorCallback(response) {
+			console.log("error");
+		});
+	}
+	
+	$scope.onSetRolePemission=function(role_id){
+		select_role_id=role_id;
+		$("#setRolePermissionModal").modal("show");
+		getRolePermissionData(role_id);
+		getPermissions();
+	}
+	
+	$scope.onCancelForSetPermission=function(){
+		$("#setRolePermissionModal").modal("hide");
+	}
+	
+	function getPermissions(){
+			var parms = {
+			};
+			$http.post('/getAllPermissions', parms).then(function successCallback(response) {
+				var permissionata=response.data;
+				$("#slpermission").html("");
+				for(var i=0;i<permissionata.length;i++){
+					var permission_id=permissionata[i].permission_id;
+					var permissiom_name=permissionata[i].permissiom_name;
+					$("#slpermission").append("<option value="+permission_id+">"+permissiom_name+"</option>");
+				} 
+			}, function errorCallback(response) {
+				console.log("error");
+			});
+     }
+	
+	function getRolePermissionData(role_id){
+		var parms = {
+		   "role_id":role_id
+		};
+		$http.post('/getRolePermissions', parms).then(function successCallback(response) {
+			var datas=response.data;
+			$scope.rolePermissonData=datas;
+		}, function errorCallback(response) {
+			console.log("error");
+		});
 		
 	}
 });

@@ -1,8 +1,87 @@
 <!DOCTYPE html>
 <html>
-<head><meta charset="UTF-8"></head>
+<head>
+<meta charset="UTF-8">
+</head>
+
+<style>
+.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+    width: 80px;
+}
+</style>
 
 <body>
-权限管理
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">权限管理</h3>
+		</div>
+		<div class="panel-body">
+			<div class="col-ms-12">
+				<button ng-click="onAdd()" class="btn btn-primary">新增权限点</button>
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>操作</th>
+							<th>权限名</th>
+						    <th>描述</th>
+						</tr>
+					<thead>
+						<tr ng-repeat="item in permissionData">
+							<td><img style="cursor: pointer;" src="photo/see.PNG"
+								ng-click="onShow(item.permission_id)" height="14px" /> <img
+								style="cursor: pointer;" src="photo/delete.PNG"
+								ng-click="onDelete(item.permission_id)" height="18px" /></td>
+							<td>{{item.permissiom_name}}</td>
+							<td>{{item.comments}}</td>
+						</tr>
+				</table>
+				<div id="pagePaginator" style="text-align: left;">
+					<ul id="pageLimit"></ul>
+					<span style="float: right; margin-top: 5px; color: #222"> 
+					每页
+					<select id="slpk" class="selectpicker" data-live-search="false" 
+					style="width:50px" >
+					<option value='5'>5</option>
+					<option value='10'>10</option>
+					<option value='20'>20</option>
+					<option value='50'>50</option>
+					</select>
+				条, 共{{total_record}}条记录</span>
+				</div>
+				 <br>
+			</div>
+		</div>
+	</div>
+
+
+   <!-- 模态框（Modal)-->
+	<div class="modal fade" id="addPermissionModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 1100px">
+			<div class="modal-content">
+				<div class="modal-header">新增权限</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="col-md-4">
+								权限点名： <input ng-model="permissiom_name">
+							</div>
+							<div class="col-md-4">
+								描述： <input ng-model="comments">
+							</div>
+					</div>
+				    </div>
+		    	</div>
+		    	<div class="modal-footer">
+					<button class="btn btn-primary" ng-click="onOk()">确定</button>
+					<button class="btn btn-primary" ng-click="onCancel()">取消</button>
+				</div>
+		</div>
+	</div>
+	</div>
+
 </body>
+<script type="text/javascript">
+</script>
+
 </html>

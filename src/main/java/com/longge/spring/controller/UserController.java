@@ -33,7 +33,15 @@ public class UserController {
 	{
 		return userService.getUsers(pageParms);
 	}
+	
+	@RequestMapping(value="/getUserRoles",method=RequestMethod.POST)
+	@ResponseBody
+	public List<Map<String, Object>> getUserRoles(@RequestBody Map<String, Object> pageParms,HttpServletRequest request)
+	{
+		return userService.getUserRoles(pageParms);
+	}
 
+	
 	
 	@RequestMapping(value="/addUser",method=RequestMethod.POST)
 	@ResponseBody
@@ -44,6 +52,16 @@ public class UserController {
 	   user.put("status", "1");
 	   user.put("create_date", DateUtil.ymdFormat.format(new Date()));
 	   userService.addUser(user);
+	   return null;
+	}
+	
+	@RequestMapping(value="/addUserRole",method=RequestMethod.POST)
+	@ResponseBody
+	public List<Map<String, Object>> addUserRole(@RequestBody Map<String, String> userRole,HttpServletRequest request)
+	{
+
+	   userRole.put("status", "1");
+	   userService.addUserRole(userRole);
 	   return null;
 	}
 	

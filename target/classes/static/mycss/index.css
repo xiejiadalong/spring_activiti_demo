@@ -54,9 +54,9 @@ ul.nav-tabs.affix {
 }
 
 .btn {
-    padding: 4px 8px;
-    font-size: 12px;
-    font-weight: 300;
+    padding: 2px 8px;
+    font-size: 10px;
+    font-weight: 200;
 }
 
 .pagination>li>a, .pagination>li>span {
@@ -65,7 +65,7 @@ ul.nav-tabs.affix {
 
 .panel-default>.panel-heading {
     color: #333;
-    background-color: #BDBDA2;
+    background-color: #F7F2F2;
     border-color: #ddd;
 }
 

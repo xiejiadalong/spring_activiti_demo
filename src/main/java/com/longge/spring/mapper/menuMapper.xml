@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.longge.spring.dao.MenuDao">
+    
+      <select id="get" parameterType="map" resultType="map">
+         SELECT * FROM menu_t WHERE FIND_IN_SET(menu_id, getChildLst(#{menu_id}))
+     </select>
+     
+     <select id="getAll" parameterType="map" resultType="map">
+        select * from menu_t
+     </select>
+     
+      <select id="getTotal" parameterType="map" resultType="int">
+        select count(1) as total_record from permission_t
+     </select>
+     
+     <insert id="add" parameterType="map" >
+           insert into menu_t(menu_id,menu_name,menu_type,p_id,status,url,level)
+           values(#{menu_id},#{menu_name},#{menu_type},#{p_id},#{status},#{url},#{level})
+      </insert>
+      
+      <insert id="addMenuPermission" parameterType="map" >
+           insert into permission_menu_t(menu_id,permission_id,status)
+           values(#{menu_id},#{permission_id},#{status})
+      </insert>
+      
+      <delete id="delete" parameterType="map">
+            delete from menu_t
+            where  menu_id=#{menu_id}
+      </delete>
+      
+      <delete id="deleteMenuPermission" parameterType="map">
+            delete from permission_menu_t
+            where  menu_id=#{menu_id}
+      </delete>
+      
+      <select id="getDetail" parameterType="map" resultType="com.longge.spring.entity.TreeNode">
+          SELECT 
+              menu_name text,
+              menu_id,
+              menu_id id,
+              p_id,
+              menu_name,
+              menu_type,
+              status,
+              level,
+              url
+           FROM menu_t WHERE FIND_IN_SET(menu_id, getChildLst(#{menu_id}))
+     </select>
+     
+ </mapper>

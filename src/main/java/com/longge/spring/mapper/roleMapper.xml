@@ -9,6 +9,25 @@
         limit #{startNum},#{numberOfPages}
      </select>
      
+     <select id="getAllRoles" parameterType="map" resultType="map">
+        select * from role_t
+        order by create_date desc,role_id
+     </select>
+     
+     <select id="getRolePermissions" parameterType="map" resultType="map">
+        select
+         rp.*,
+         role.role_name,
+         per.permissiom_name
+         from role_permission_t rp
+        left join role_t role
+        on role.role_id=rp.role_id
+        left join permission_t per
+        on per.permission_id=rp.permission_id
+        where rp.role_id=#{role_id}
+     </select>
+     
+     
       <select id="getTotal" parameterType="map" resultType="int">
         select count(1) as total_record from role_t
      </select>
@@ -16,6 +35,11 @@
      <insert id="addRole" parameterType="map" >
            insert into role_t(role_id,role_name,role_status,role_type,create_date,comment)
            values(#{role_id},#{role_name},#{role_status},#{role_type},#{create_date},#{comment})
+      </insert>
+      
+       <insert id="addRolePemission" parameterType="map" >
+           insert into role_permission_t(role_id,permission_id,status)
+           values(#{role_id},#{permission_id},#{status})
       </insert>
       
       <delete id="deleteRole" parameterType="map">
